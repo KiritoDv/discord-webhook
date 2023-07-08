@@ -10,11 +10,12 @@ try {
 
     fetch(webhook, {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: message.match(reg) ? message : JSON.stringify({ content: message })
     }).then(res => res.json()).then(res => {
         core.setOutput("result", JSON.stringify(res));
-        const payload = JSON.stringify(github.context.payload, undefined, 2)
-        console.log(`The event payload: ${payload}`);
     })
 } catch (error) {
   core.setFailed(error.message);
