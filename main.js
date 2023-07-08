@@ -14,8 +14,12 @@ try {
             'Content-Type': 'application/json'
         },
         body: message.match(reg) ? message : JSON.stringify({ content: message })
-    }).then(res => res.json()).then(res => {
-        core.setOutput("result", JSON.stringify(res));
+    }).then(async (res) => {
+        if(res.status === 204) {
+            core.setOutput("result", "Payload sent successfully");
+        } else {
+            core.setFailed(await res.text())
+        }
     })
 } catch (error) {
   core.setFailed(error.message);
