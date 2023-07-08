@@ -1,15 +1,15 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Discord Webhook Action'
+description: 'Send a message to a Discord webhook'
 inputs:
   webhook:
-    description: 'Discord webhook url'
+    description: 'Webhook url'
     required: true
   message:
-    description: 'Webhook message'
+    description: 'Webhook payload / message'
     required: true
 outputs:
   result:
     description: 'Webhook result'
 runs:
   using: 'node16'
-  main: 'main.js'
+  main: 'dist/index.js'
