@@ -1,5 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
 const reg = /(?<=\{)(.*?)(?=\})/g;
 
 try {
@@ -11,7 +13,6 @@ try {
         body: message.match(reg) ? message : JSON.stringify({ content: message })
     }).then(res => res.json()).then(res => {
         core.setOutput("result", JSON.stringify(res));
-
         const payload = JSON.stringify(github.context.payload, undefined, 2)
         console.log(`The event payload: ${payload}`);
     })
