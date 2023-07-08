@@ -1,0 +1,15 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  webhook:
+    description: 'Discord webhook url'
+    required: true
+  message:
+    description: 'Webhook message'
+    required: true
+outputs:
+  result:
+    description: 'Webhook result'
+runs:
+  using: 'node16'
+  main: 'main.js'
